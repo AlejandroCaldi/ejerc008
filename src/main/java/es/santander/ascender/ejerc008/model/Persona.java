@@ -4,11 +4,14 @@ import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Persona {
@@ -22,8 +25,13 @@ public class Persona {
     @Length(max = 80)
     private String apellidos;
 
+    @NotNull
+    @Column(unique = true)
+    private String DNI;
+
     @JsonIgnore
     @ManyToOne()
+    @JoinColumn(name = "provincia_id", nullable = false) 
     private Provincia provincia;
 
     // Overrides de métodos HasCode y equals.
@@ -58,14 +66,21 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(Long id, @Length(max = 80) String nombre, @Length(max = 80) String apellidos, Provincia provincia) {
+
+
+    
+    // Getters y setters
+
+
+
+    public Persona(Long id, @Length(max = 80) String nombre, @Length(max = 80) String apellidos, @NotNull String dNI,
+            Provincia provincia) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
+        DNI = dNI;
         this.provincia = provincia;
     }
-
-    // Getters y setters
 
     public Provincia getProvincia() {
         return provincia;
@@ -97,5 +112,13 @@ public class Persona {
 
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
+    }
+
+    public String getDNI() {
+        return DNI;
+    }
+
+    public void setDNI(String dNI) {
+        DNI = dNI;
     }
 }
