@@ -1,16 +1,12 @@
 package es.santander.ascender.ejerc008.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.hibernate.validator.constraints.Length;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Min;
 
 @Entity
 public class Provincia {
@@ -19,33 +15,15 @@ public class Provincia {
     private Long id;
 
     @Length(max = 50)
-    private String referencia;
+    private String nombre;
 
-    @OneToMany(orphanRemoval = true, 
-                mappedBy = "expediente", 
-                cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
-    private List<Persona> provincia = new ArrayList<>();
+    @Min(value = 0)
+    private Long poblacion;
 
+    @Min(value = 0)
+    private double superficie;
 
-    public List<Persona> getProvincia() {
-        return provincia;
-    }
-
-    public void setProvincia(List<Persona> provincia) {
-        this.provincia = provincia;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getReferencia() {
-        return referencia;
-    }
+    // Overrides
 
     @Override
     public int hashCode() {
@@ -72,7 +50,49 @@ public class Provincia {
         return true;
     }
 
-    public void setReferencia(String referencia) {
-        this.referencia = referencia;
+    // Constructores
+    public Provincia() {
+
     }
+
+    public Provincia(Long id, @Length(max = 50) String nombre, @Min(0) Long poblacion, @Min(0) double superficie) {
+        this.id = id;
+        this.nombre = nombre;
+        this.poblacion = poblacion;
+        this.superficie = superficie;
+    }
+
+    // getters and setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Long getPoblacion() {
+        return poblacion;
+    }
+
+    public void setPoblacion(Long poblacion) {
+        this.poblacion = poblacion;
+    }
+
+    public double getSuperficie() {
+        return superficie;
+    }
+
+    public void setSuperficie(double superficie) {
+        this.superficie = superficie;
+    }
+
 }
