@@ -58,8 +58,8 @@ public class PersonaController {
         }
     }
 
-    // Read (by ID)
-    @GetMapping("/{dni}")
+    // Read (by DNI)
+    @GetMapping("/dni/{dni}")
     public ResponseEntity<Persona> getPersonaById(@PathVariable String dni) {
         Optional<Persona> persona = Optional.ofNullable(personaService.getPersonaByDNI(dni));
         if (persona.isPresent()) {
