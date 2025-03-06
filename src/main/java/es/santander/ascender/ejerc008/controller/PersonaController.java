@@ -71,7 +71,7 @@ public class PersonaController {
 
     // Update
     @PutMapping("/{id}")
-    public ResponseEntity<Persona> updatePersona(@PathVariable @Valid Long id, @RequestBody Persona personaDetails) throws Exception {
+    public ResponseEntity<Persona> updatePersona(@PathVariable Long id, @RequestBody @Valid Persona personaDetails) throws Exception {
         Persona updatedPersona = personaService.updatePersona(id, personaDetails);
 
         if (updatedPersona != null) {

@@ -55,7 +55,7 @@ public class ProvinciaController {
 
     
     @PutMapping("/{id}")
-    public ResponseEntity<Provincia> updateExpediente(@PathVariable Long id, @RequestBody @valid Provincia provinciaDetails) {
+    public ResponseEntity<Provincia> updateExpediente(@PathVariable Long id, @RequestBody @Valid Provincia provinciaDetails) {
                
         Provincia updatedProvincia = provinciaService.update(provinciaDetails);
         if (updatedProvincia != null) {
