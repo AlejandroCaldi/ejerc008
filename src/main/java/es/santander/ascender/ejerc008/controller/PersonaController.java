@@ -36,7 +36,7 @@ public class PersonaController {
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
             }
         }
-        return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+        return new ResponseEntity<>(HttpStatus.CONFLICT);
 
     }
 
