@@ -19,13 +19,14 @@ public class Persona {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Length(max = 80)
+    @Length(max = 80, min = 1)
     private String nombre;
 
-    @Length(max = 80)
+    @Length(max = 80, min = 1)
     private String apellidos;
 
     @NotNull
+    @Length(max = 9, min = 9)
     @Column(unique = true)
     private String DNI;
 
@@ -71,19 +72,19 @@ public class Persona {
     
     // Getters y setters
 
+    
 
+    public Provincia getProvincia() {
+        return provincia;
+    }
 
-    public Persona(Long id, @Length(max = 80) String nombre, @Length(max = 80) String apellidos, @NotNull String dNI,
-            Provincia provincia) {
+    public Persona(Long id, @Length(max = 80, min = 1) String nombre, @Length(max = 80, min = 1) String apellidos,
+            @NotNull @Length(max = 9, min = 9) String dNI, Provincia provincia) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
         DNI = dNI;
         this.provincia = provincia;
-    }
-
-    public Provincia getProvincia() {
-        return provincia;
     }
 
     public void setProvincia(Provincia provincia) {

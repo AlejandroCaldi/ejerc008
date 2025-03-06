@@ -10,7 +10,7 @@ Persona que tenga todas las operaciones de crud.
 Una persona tiene una provincia. Vacía? por ahora, no. 
 Relación de provincia a persona una a muchas. 
 
-Cuando actualizo la persona puedo cambiar la provincia. que la actualizaciòn sea de la persona, en JPA, pero no de la provincia. 
+Cuando actualizo la persona npuedo cambiar la provincia. que la actualizaciòn sea de la persona, en JPA, pero no de la provincia. Qiue no borre la provincia ni que agergue ni cambie. 
 no quiero que cuando cree la persona y le pongo por error una provincia que no existe que me la cree (no debe crear provincia). Entonces vamos a tener que actualizar perso,s ni crear ni modificar provincia. 
 
 Si borro la persona, que no borre, obviamente, la provincia. 

@@ -2,11 +2,14 @@ package es.santander.ascender.ejerc008.model;
 
 import org.hibernate.validator.constraints.Length;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Provincia {
@@ -15,6 +18,9 @@ public class Provincia {
     private Long id;
 
     @Length(max = 50)
+    @Column(unique = true)
+    @NotNull
+    @NotBlank
     private String nombre;
 
     @Min(value = 0)
@@ -55,7 +61,8 @@ public class Provincia {
 
     }
 
-    public Provincia(Long id, @Length(max = 50) String nombre, @Min(0) Long poblacion, @Min(0) double superficie) {
+    public Provincia(Long id, @Length(max = 50) @NotNull @NotBlank String nombre, @Min(0) Long poblacion,
+            @Min(0) double superficie) {
         this.id = id;
         this.nombre = nombre;
         this.poblacion = poblacion;
