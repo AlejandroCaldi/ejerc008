@@ -19,7 +19,7 @@ public class PersonaService {
     // Create
     public Persona createPersona(Persona persona) {
         Optional<Persona> personaOptional = personaRepository.findByDNI(persona.getDNI());
-        if (personaOptional != null) {
+        if (!personaOptional.isPresent()) {
             return personaRepository.save(persona);
         }
         return null;

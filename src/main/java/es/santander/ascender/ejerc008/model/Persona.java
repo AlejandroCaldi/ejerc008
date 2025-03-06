@@ -33,7 +33,7 @@ public class Persona {
     @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "provincia_id", nullable = false) 
-    private Provincia provincia;
+    private Provincia provincia_id;
 
     // Overrides de métodos HasCode y equals.
 
@@ -69,24 +69,24 @@ public class Persona {
 
 
     public Persona(Long id, @Length(max = 80, min = 1) String nombre, @Length(max = 80, min = 1) String apellidos,
-            @NotNull @Length(max = 9, min = 9) String dNI, Provincia provincia) {
+            @NotNull @Length(max = 9, min = 9) String dNI, Provincia provincia_id) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
         DNI = dNI;
-        this.provincia = provincia;
+        this.provincia_id = provincia_id;
     }
     
     // Getters y setters
 
 
     public Provincia getProvincia() {
-        return provincia;
+        return provincia_id;
     }
 
 
-    public void setProvincia(Provincia provincia) {
-        this.provincia = provincia;
+    public void setProvincia(Provincia provincia_id) {
+        this.provincia_id = provincia_id;
     }
 
     public Long getId() {

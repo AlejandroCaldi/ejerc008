@@ -33,7 +33,7 @@ public class PersonaController {
             if (createdPersona != null) {
                 return new ResponseEntity<>(createdPersona, HttpStatus.CREATED);
             } else {
-                return new ResponseEntity<>(HttpStatus.CONFLICT); // Or HttpStatus.BAD_REQUEST
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
             }
         }
         return new ResponseEntity<>(null, HttpStatus.CONFLICT);

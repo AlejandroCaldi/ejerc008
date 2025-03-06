@@ -26,7 +26,7 @@ public class Provincia {
     @Min(value = 0)
     private Long poblacion;
 
-    @Min(value = 0)
+    @Min(value = (long) 0.1d)
     private double superficie;
 
     // Overrides
