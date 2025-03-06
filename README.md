@@ -17,3 +17,5 @@ Si borro la persona, que no borre, obviamente, la provincia.
 Sin enums.
 
 Version 0.2.0 -- levanta el servidor sin problemas. Resta chequeo delog de Hibernate y testear los endpoints con swagger. 
+
+Versión 0.3.0 --  Funcionan todos los endpoints en swagger, y se agega búsqueda por DNI para persona. 
