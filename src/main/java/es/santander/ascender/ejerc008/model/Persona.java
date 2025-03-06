@@ -68,16 +68,6 @@ public class Persona {
     }
 
 
-
-    
-    // Getters y setters
-
-    
-
-    public Provincia getProvincia() {
-        return provincia;
-    }
-
     public Persona(Long id, @Length(max = 80, min = 1) String nombre, @Length(max = 80, min = 1) String apellidos,
             @NotNull @Length(max = 9, min = 9) String dNI, Provincia provincia) {
         this.id = id;
@@ -86,6 +76,14 @@ public class Persona {
         DNI = dNI;
         this.provincia = provincia;
     }
+    
+    // Getters y setters
+
+
+    public Provincia getProvincia() {
+        return provincia;
+    }
+
 
     public void setProvincia(Provincia provincia) {
         this.provincia = provincia;
