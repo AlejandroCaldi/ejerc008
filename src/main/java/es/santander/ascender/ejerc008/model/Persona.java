@@ -31,7 +31,7 @@ public class Persona {
     @NotNull
     @Length(max = 9, min = 9)
     @Column(unique = true)
-    @Pattern(regexp = "^[A-Z][0-9]{8}[A-Z]$")
+    @Pattern(regexp = "^(?:\\d{8}[A-Z]|[XYZ]\\d{7}[A-Z])$")
     private String DNI;
 
     @JsonIgnore
