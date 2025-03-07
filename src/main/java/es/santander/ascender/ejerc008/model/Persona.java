@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 public class Persona {
@@ -20,14 +21,17 @@ public class Persona {
     private Long id;
 
     @Length(max = 80, min = 1)
+    @Pattern(regexp = "^\\p{L}+([-' ]\\p{L}+)*$")
     private String nombre;
 
     @Length(max = 80, min = 1)
+    @Pattern(regexp = "^\\p{L}+([-' ]\\p{L}+)*$")
     private String apellidos;
 
     @NotNull
     @Length(max = 9, min = 9)
     @Column(unique = true)
+    @Pattern(regexp = "^[A-Z][0-9]{8}[A-Z]$")
     private String DNI;
 
     @JsonIgnore
