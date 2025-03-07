@@ -48,19 +48,11 @@ public class PersonaService {
         Optional<Persona> personaOptional = personaRepository.findById(id);
         if (personaOptional.isPresent()) {
             Persona persona = personaOptional.get();
-            if (!persona.getDNI().equals(personaDetails.getDNI())) {
-                Optional<Persona> personaOptionalByDNI = personaRepository.findByDNI(personaDetails.getDNI());
-                if (!personaOptionalByDNI.isPresent()) {
                     persona.setDNI(personaDetails.getDNI());
                     persona.setProvincia(personaDetails.getProvincia());
                     persona.setNombre(personaDetails.getNombre());
                     persona.setApellidos(personaDetails.getApellidos());
                     return personaRepository.save(persona);
-
-                } else {
-                    throw new Exception("DNI Ya registrado");
-                }
-            }
         }
         return null;
     }

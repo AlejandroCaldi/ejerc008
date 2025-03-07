@@ -29,8 +29,8 @@ public class Persona {
     private String apellidos;
 
     @NotNull
-    @Length(max = 9, min = 9)
-    @Column(unique = true)
+    @Length(max = 9, min = 8)
+    //@Column(unique = true)
     @Pattern(regexp = "^(?:\\d{8}[A-Z]|[XYZ]\\d{7}[A-Z])$")
     private String DNI;
 

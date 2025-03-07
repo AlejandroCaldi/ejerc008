@@ -42,7 +42,7 @@ public class Ejerc008Application {
             Persona persona1 = new Persona();
             persona1.setNombre("Alice");
             persona1.setApellidos("Smith");
-            persona1.setDNI("12345678A");
+            persona1.setDNI("Z1245678A");
             persona1.setProvincia(burgos);
             personaService.createPersona(persona1);
 
