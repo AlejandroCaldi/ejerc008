@@ -35,7 +35,7 @@ public class Persona {
 
     @JsonIgnore
     @ManyToOne()
-    @JoinColumn(name = "provincia_id", nullable = false) 
+    @JoinColumn(name = "provincia_id", nullable = true) 
     private Provincia provincia_id;
 
     // Overrides de métodos HasCode y equals.
