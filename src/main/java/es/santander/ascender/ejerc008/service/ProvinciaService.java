@@ -10,14 +10,19 @@ import org.springframework.transaction.annotation.Transactional;
 import es.santander.ascender.ejerc008.enums.CRUDOperation;
 import es.santander.ascender.ejerc008.exception.CrudSecurityException;
 import es.santander.ascender.ejerc008.model.Provincia;
+import es.santander.ascender.ejerc008.repository.PersonaRepository;
 import es.santander.ascender.ejerc008.repository.ProvinciaRepository;
 
 
 @Service
 @Transactional
 public class ProvinciaService {
+
     @Autowired
     private ProvinciaRepository provinciaRepository;
+
+    @Autowired
+    private PersonaRepository personaRepository;
 
     // Create
     public Provincia createProvincia(Provincia provincia) {
@@ -46,4 +51,10 @@ public class ProvinciaService {
         return provinciaRepository.save(provincia);
     }
 
+    //Delete
+    public void deleteProvincia(Long id) {
+    
+        personaRepository.limpiaProvincia(id);  // Deja en null el Id de todas las personas en esa provincia antes de borrar la provincia.  
+        provinciaRepository.deleteById(id);
+    }
 }
