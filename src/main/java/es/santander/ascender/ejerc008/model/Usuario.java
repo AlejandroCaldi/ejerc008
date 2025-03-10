@@ -10,7 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 @Entity
@@ -35,16 +34,6 @@ public class Usuario {
 
     public Usuario() {
     }
-
-    // public Usuario(Long id, @Length(max = 25, min = 10) String usuario,
-    //     @Length(max = 80, min = 1) @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$\n") String email,
-    //     @NotNull @Length(max = 9, min = 8) Persona persona_id) {
-
-    //     this.id = id;
-    //     this.usuario = usuario;
-    //     this.email = email;
-    //     this.persona_id = persona_id;
-    // }
 
     // Overrides de métodos HasCode y equals.
 
