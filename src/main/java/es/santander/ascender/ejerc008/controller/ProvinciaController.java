@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import es.santander.ascender.ejerc008.model.Provincia;
 import es.santander.ascender.ejerc008.service.ProvinciaService;
@@ -27,6 +28,7 @@ public class ProvinciaController {
     private ProvinciaService provinciaService;
 
     // Create
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<Provincia> createProvincia(@RequestBody @Valid Provincia provincia) {
         Provincia createdProvincia = provinciaService.createProvincia(provincia);
@@ -37,6 +39,7 @@ public class ProvinciaController {
     }
 
     // Read (all)
+    @PreAuthorize("hasRole('USER')")
     @GetMapping
     public ResponseEntity<List<Provincia>> getTodasProvincias() {
         List<Provincia> expedientes = provinciaService.getAllProvincias();
@@ -44,6 +47,7 @@ public class ProvinciaController {
     }
 
     // Read (by ID)
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/{id}")
     public ResponseEntity<Provincia> getProvinciaById(@PathVariable Long id) {
         Optional<Provincia> provincia = provinciaService.getProvinciaById(id);
@@ -54,7 +58,7 @@ public class ProvinciaController {
         }
     }
 
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<Provincia> updateExpediente(@PathVariable Long id, @RequestBody @Valid Provincia provinciaDetails) {
                
@@ -66,6 +70,7 @@ public class ProvinciaController {
         }
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     //Delete
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProvincia(@PathVariable Long id) {
