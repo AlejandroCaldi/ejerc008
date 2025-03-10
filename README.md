@@ -23,3 +23,5 @@ Versión 0.3.0 --  Funcionan todos los endpoints en swagger, y se agega búsqued
 Versión 0.3.2 --  Agreagado de ComamndLineRunner en main. 
 
 Versiòn 0.4.0 -- problemas en Update cuando quieres hacer un update de provincia. 
+
+Versión 0.5.3 -- Agregada toda la funcionalidad para usuario. 
