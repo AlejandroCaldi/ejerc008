@@ -22,11 +22,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .requestMatchers("/swagger-ui/**").permitAll()  // URLs públicas
-                .requestMatchers("/v3/**").permitAll()  // URLs públicas
-                .requestMatchers("/api/**").authenticated()
-                .requestMatchers("/actuator/**").authenticated()
-                .anyRequest().denyAll()
+            .requestMatchers("/swagger-ui/**").permitAll()  // URLs públicas
+            .requestMatchers("/v3/api-docs/**").permitAll()// URLs públicas
+            .requestMatchers("/swagger-resources/**").permitAll()//URLs públicas
+            .requestMatchers("/api/**").authenticated()
+            .requestMatchers("/actuator/**").authenticated()
+            .anyRequest().denyAll()
             .and()
             .httpBasic()  // Habilita autenticación básica
             .and()
@@ -39,7 +40,7 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService() {
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
         manager.createUser(User.withUsername("usuario1").password("{noop}contraseña1").roles("USER").build());
-        manager.createUser(User.withUsername("Admin").password("{noop}contraseña2").roles("ADMIN").build());
+        manager.createUser(User.withUsername("Admin").password("{noop}contraseña2").roles("USER", "ADMIN").build());
         manager.createUser(User.withUsername("usuario3").password("{noop}contraseña3").roles("USER").build());
         return manager;
     }

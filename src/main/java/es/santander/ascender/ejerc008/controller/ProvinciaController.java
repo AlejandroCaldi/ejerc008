@@ -70,8 +70,9 @@ public class ProvinciaController {
         }
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+
     //Delete
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProvincia(@PathVariable Long id) {
         provinciaService.deleteProvincia(id);
