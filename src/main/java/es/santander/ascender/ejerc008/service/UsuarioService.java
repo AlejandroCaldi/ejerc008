@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.santander.ascender.ejerc008.model.Persona;
 import es.santander.ascender.ejerc008.model.Usuario;
 import es.santander.ascender.ejerc008.repository.UsuarioRepository;
 
@@ -16,13 +17,12 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private PersonaService personaService;
+ 
     // Create
     public Usuario createUsuario(Usuario usuario) {
-        Optional<Usuario> usuarioOptional = usuarioRepository.findById(usuario.getId());
-        if (!usuarioOptional.isPresent()) {
-            return usuarioRepository.save(usuario);
-        }
-        return null;
+        return usuarioRepository.save(usuario);
     }
 
     // Read (all)
@@ -38,12 +38,13 @@ public class UsuarioService {
     }
 
     // Update
-    public Usuario updateUsuario(Long id, Usuario usuarioDetails) throws Exception {
+    public Usuario updateUsuario(Long id, Usuario usuarioDetails) {
         Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
         if (usuarioOptional.isPresent()) {
             Usuario usuario = usuarioOptional.get();
                     usuario.setUsuario(usuarioDetails.getUsuario());
                     usuario.setEmail(usuarioDetails.getEmail());
+                    usuario.setPersona_id(usuarioDetails.getPersona_id());
                     return usuarioRepository.save(usuario);
         }
         return null;
@@ -53,6 +54,12 @@ public class UsuarioService {
     public boolean deleteUsuario(Long id) {
         Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
         if (usuarioOptional.isPresent()) {
+            Usuario usuario = usuarioOptional.get();
+            Persona persona = usuario.getPersona_id();
+            if (persona != null) {
+                persona.setUsuario(null); 
+                personaService.updatePersona(persona.getId(), persona); 
+            }
             usuarioRepository.deleteById(id);
             return true;
         }

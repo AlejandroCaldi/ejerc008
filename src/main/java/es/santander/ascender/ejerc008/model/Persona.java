@@ -4,12 +4,14 @@ import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
@@ -37,6 +39,9 @@ public class Persona {
     @ManyToOne()
     @JoinColumn(name = "provincia_id", nullable = true) 
     private Provincia provincia_id;
+
+    @OneToOne(mappedBy = "persona_id", cascade = CascadeType.ALL, orphanRemoval = true, optional = true)
+    private Usuario usuario;
 
     // Overrides de métodos HasCode y equals.
 
@@ -71,17 +76,18 @@ public class Persona {
     }
 
 
-    public Persona(Long id, @Length(max = 80, min = 1) String nombre, @Length(max = 80, min = 1) String apellidos,
+
+    
+    // Getters y setters
+
+
+    public Persona( @Length(max = 80, min = 1) String nombre, @Length(max = 80, min = 1) String apellidos,
             @NotNull @Length(max = 9, min = 9) String dNI, Provincia provincia_id) {
-        this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
         DNI = dNI;
         this.provincia_id = provincia_id;
     }
-    
-    // Getters y setters
-
 
     public Provincia getProvincia() {
         return provincia_id;
@@ -123,4 +129,23 @@ public class Persona {
     public void setDNI(String dNI) {
         DNI = dNI;
     }
+
+    public void setProvincia_id(Provincia provincia_id) {
+        this.provincia_id = provincia_id;
+    }
+
+    public Provincia getProvincia_id() {
+        return provincia_id;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+
+    
 }

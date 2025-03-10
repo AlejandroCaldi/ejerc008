@@ -22,7 +22,7 @@ public class PersonaService {
         if (!personaOptional.isPresent()) {
             return personaRepository.save(persona);
         }
-        return null;
+        return personaOptional.get();
     }
 
     // Read (all)
@@ -44,7 +44,7 @@ public class PersonaService {
     }
 
     // Update
-    public Persona updatePersona(Long id, Persona personaDetails) throws Exception {
+    public Persona updatePersona(Long id, Persona personaDetails) {
         Optional<Persona> personaOptional = personaRepository.findById(id);
         if (personaOptional.isPresent()) {
             Persona persona = personaOptional.get();
@@ -52,6 +52,7 @@ public class PersonaService {
                     persona.setProvincia(personaDetails.getProvincia());
                     persona.setNombre(personaDetails.getNombre());
                     persona.setApellidos(personaDetails.getApellidos());
+                    persona.setUsuario(personaDetails.getUsuario());
                     return personaRepository.save(persona);
         }
         return null;

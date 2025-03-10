@@ -19,16 +19,12 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Length(max = 25, min = 10)
+    @Length(max = 50, min = 10)
     private String usuario;
 
-    @Length(max = 80, min = 1)
-    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$\n")
+    @Length(max = 80, min = 5)
+    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
     private String email;
-
-    @NotNull
-    @Length(max = 9, min = 8)
-    //@Column(unique = true)
 
     @JsonIgnore
     @OneToOne()
@@ -40,15 +36,15 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Long id, @Length(max = 25, min = 10) String usuario,
-        @Length(max = 80, min = 1) @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$\n") String email,
-        @NotNull @Length(max = 9, min = 8) Persona persona_id) {
+    // public Usuario(Long id, @Length(max = 25, min = 10) String usuario,
+    //     @Length(max = 80, min = 1) @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$\n") String email,
+    //     @NotNull @Length(max = 9, min = 8) Persona persona_id) {
 
-        this.id = id;
-        this.usuario = usuario;
-        this.email = email;
-        this.persona_id = persona_id;
-    }
+    //     this.id = id;
+    //     this.usuario = usuario;
+    //     this.email = email;
+    //     this.persona_id = persona_id;
+    // }
 
     // Overrides de métodos HasCode y equals.
 
@@ -100,6 +96,8 @@ public class Usuario {
     public Long getId() {
         return id;
     }
+
+
 
     public void setId(Long id) {
         this.id = id;
